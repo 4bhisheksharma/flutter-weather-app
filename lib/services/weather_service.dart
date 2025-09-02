@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class WeatherService {
-  static const BaseURL = "http://api.openweathermap.org/data/2.5/weather";
+  static const baseURL = "http://api.openweathermap.org/data/2.5/weather";
   final String apiKey;
 
   WeatherService(this.apiKey);
 
   Future<Weather> fetchWeather(String city) async {
-    final url = Uri.parse('$BaseURL?q=$city&appid=$apiKey&units=metric');
+    final url = Uri.parse('$baseURL?q=$city&appid=$apiKey&units=metric');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
