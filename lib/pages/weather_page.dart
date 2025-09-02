@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
+import 'package:weather_app/theme/theme.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -70,24 +71,46 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.scaffoldBackgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //location icon
+            Icon(Icons.location_on, size: 35, color: AppTheme.textColor),
             // city name
-            Text(_weather?.cityName ?? 'Loading City...'),
+            Text(
+              _weather?.cityName ?? 'Loading City...',
+              style: TextStyle(color: AppTheme.textColor),
+            ),
 
             //animation
             Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
 
+            SizedBox(height: 80),
             // temperature
             if (_weather != null)
-              Text('${_weather!.temperature.round()}°C')
+              Text(
+                '${_weather!.temperature.round()}°C',
+                style: TextStyle(
+                  color: AppTheme.textColor,
+                  fontSize: 35,
+                  fontFamily: 'Roboto',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
             else
-              Text('Loading Temperature...'),
+              Text(
+                'Loading Temperature...',
+                style: TextStyle(color: AppTheme.textColor),
+              ),
 
             //weather condition
-            Text(_weather?.mainCondition ?? 'Loading Condition...'),
+            Text(
+              _weather?.mainCondition ?? 'Loading Condition...',
+              style: TextStyle(color: AppTheme.textColor),
+            ),
           ],
         ),
       ),
